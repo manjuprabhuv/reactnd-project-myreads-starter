@@ -1,6 +1,8 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
+import Header from './components/Header'
+import DropDown from './components/DropDown'
 
 class BooksApp extends React.Component {
   state = {
@@ -11,6 +13,13 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false
+  }
+  bookShelfDropDownValues = {
+    move:"Move to...",
+    currentlyReading:"Currently Reading",
+    wantToRead:"Want to Read",
+    read:"Read",
+    none:"None"
   }
 
   render() {
@@ -39,9 +48,8 @@ class BooksApp extends React.Component {
           </div>
         ) : (
           <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
+            <Header title="MyReads"></Header>
+            
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
@@ -52,15 +60,10 @@ class BooksApp extends React.Component {
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
-                            <div className="book-shelf-changer">
-                              <select>
-                                <option value="move" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
-                              </select>
-                            </div>
+                            
+                            <DropDown dropdownVals={this.bookShelfDropDownValues} clazzName="book-shelf-changer"/>
+                             
+                            
                           </div>
                           <div className="book-title">To Kill a Mockingbird</div>
                           <div className="book-authors">Harper Lee</div>
