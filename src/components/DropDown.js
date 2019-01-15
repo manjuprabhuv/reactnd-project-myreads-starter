@@ -1,22 +1,27 @@
-import React from 'react';
+import React from "react";
 
-class DropDown extends React.Component{
+const DropDown = props => {
+  const handleChange = (event, data) => {
+    if (event.target.options.selectedIndex > 0)
+      props.dropDownHandler(data, event.target.value);
+  };
 
-    render(){
-        return(
-        <div className={this.props.clazzName}>
-            <select>
-                {
-                    Object.entries(this.props.dropdownVals).map(([key, value]) => {
-                       // console.log()
-                        console.log(`${key}: ${value}`);
-                        return (<option key ={key} value={key} >{value}</option>);
-                    })
-                } 
-            </select>
-        </div>         
-        )
-    }
-}
+  return (
+    <div className={props.clazzName}>
+      <select
+        onChange={event => handleChange(event, props.data)}
+        value={props.default}
+      >
+        {Object.entries(props.dropdownVals).map(([key, value], index) => {
+          return (
+            <option key={index} value={key}>
+              {value}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+};
 
 export default DropDown;
