@@ -8,6 +8,8 @@ const SearchResults = props => {
         {props.results.map(book => {
           if (props.usersBooks.has(book.id)) {
             book.shelf = props.usersBooks.get(book.id).shelf;
+          }else{
+            book.shelf="none"
           }
           return (
             <li key={book.id}>
